@@ -1,12 +1,9 @@
-#include <vector>
-using namespace std;
-
 struct DisjointSet {
-    vector<int> parent, rank;
+    int *parent, *rank;
 
     DisjointSet(int n) {
-        parent.resize(n);
-        rank.resize(n, 0);
+        parent = new int[n];
+        rank = new int[n]();
         for (int i = 0; i < n; ++i){
             // initialize parents
             parent[i] = i;
