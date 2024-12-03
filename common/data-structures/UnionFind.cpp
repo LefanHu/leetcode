@@ -1,7 +1,7 @@
-struct DisjointSet {
+struct UnionFind {
     int *parent, *rank;
 
-    DisjointSet(int n) {
+    UnionFind(int n) {
         parent = new int[n];
         rank = new int[n]();
         for (int i = 0; i < n; ++i){
