@@ -1,0 +1,43 @@
+# Problem
+
+https://leetcode.com/problems/maximum-candies-allocated-to-k-children/description
+
+# Approach
+
+Binary search possible pile values.
+
+# Complexity
+- Time complexity: O(nlogm)
+n - number of candies piles initially
+m - maximum number of candies in a pile
+
+# Code
+```cpp []
+class Solution {
+public:
+    int maximumCandies(vector<int>& candies, long long k) {
+        int mx{};
+        for (auto& c : candies) mx = max(mx, c);
+        int l{}, r = mx + 1;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            // cout << mid << endl;
+            if (!check(candies, mid, k)) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l - 1;
+    }
+
+    bool check(vector<int>& candies, int pile_size, long long k) {
+        if (!pile_size) return true;
+        for (auto& c : candies) {
+            k -= c / pile_size;
+            if (k <= 0) return true;
+        }
+        return false;
+    }
+};
+```
